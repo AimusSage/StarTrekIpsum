@@ -17,5 +17,18 @@ namespace StarTrekIpsum.Tests
             // Assert
             Assert.IsNotNull(result);
         }
+
+        [TestMethod]
+        public void StarTrekIpsumShouldReturnRandomString()
+        {
+            // Arrange
+            var ipsumGenerator = new StarTrekIpsumGenerator();
+
+            // Act
+            var result = ipsumGenerator.StarTrekIpsumParagraphGenerator();
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
     }
 }
