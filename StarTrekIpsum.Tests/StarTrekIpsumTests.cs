@@ -9,10 +9,10 @@ namespace StarTrekIpsum.Tests
         public void StarTrekIpsumShouldReturnString()
         {
             // Arrange
-            var ipsumGenerator = new StarTrekIpsumGenerator();
+            var ipsumGenerator = new StarTrekIpsumGenerator(StarTrekCaptain.Picard);
 
             // Act
-            var result = ipsumGenerator.StarTrekIpsumParagraphGenerator(1);
+            var result = ipsumGenerator.ParagraphGenerator(1);
 
             // Assert
             Assert.IsNotNull(result);
@@ -22,12 +22,26 @@ namespace StarTrekIpsum.Tests
         public void StarTrekIpsumShouldReturnRandomString()
         {
             // Arrange
-            var ipsumGenerator = new StarTrekIpsumGenerator();
+            var ipsumGenerator = new StarTrekIpsumGenerator(StarTrekCaptain.Picard);
 
             // Act
-            var result = ipsumGenerator.StarTrekIpsumParagraphGenerator();
+            var result = ipsumGenerator.ParagraphGenerator();
 
             // Assert
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void StarTrekIpsumShouldReturnMultipleParagraphs()
+        {
+            // Arrange
+            var ipsumGenerator = new StarTrekIpsumGenerator(StarTrekCaptain.Picard);
+
+            // Act
+            var result = ipsumGenerator.MultiParagraphGenerator(5);
+
+            // Assert
+            Assert.AreEqual(5, result.Length);
             Assert.IsNotNull(result);
         }
     }

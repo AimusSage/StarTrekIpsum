@@ -7,15 +7,46 @@ namespace StarTrekIpsum
 {
     public class StarTrekIpsumGenerator
     {
-        private readonly string StarTrekIpsumText = File.ReadAllText(Path.Combine(Environment.CurrentDirectory, $@"Resources\StarTrek.txt"));
+        private readonly string StarTrekIpsumText;
+        private readonly Random Random = new Random();
+
+              /// <summary>
+        /// Picks a series to extract text from at random
+        /// </summary>
+        public StarTrekIpsumGenerator()
+        {
+            StarTrekIpsumText = SetSeriesText();
+        }
+
+        /// <summary>
+        /// extracts an from the captain's series
+        /// </summary>
+        /// <param name="captain">Choose your favourite captain</param>
+        public StarTrekIpsumGenerator(StarTrekCaptain captain)
+        {
+            StarTrekIpsumText = SetSeriesText(captain);
+        }
+
+        private string SetSeriesText(StarTrekCaptain captain)
+        {
+            return File.ReadAllText(Path.Combine(Environment.CurrentDirectory, $@"Resources\StarTrek_{captain.ToString()}.txt"));
+        }
+
+        private string SetSeriesText()
+        {
+            var maxValue = Enum.GetNames(typeof(StarTrekCaptain)).Length;
+            var captain = (StarTrekCaptain)Random.Next(0, maxValue);
+            return SetSeriesText(captain);
+        }
+
         /// <summary>
         /// Generate a paragraph with a random number of sentences up to a maximum of 10
         /// </summary>
         /// <returns>A string representing a paragrah with a random number of sentences</returns>
-        public string StarTrekIpsumParagraphGenerator()
+        public string ParagraphGenerator()
         {
-            var sentenceCount = new Random("Sisko".GetHashCode()).Next(1, 10);
-            return StarTrekIpsumParagraphGenerator(sentenceCount);
+            var sentenceCount = Random.Next(1, 10);
+            return ParagraphGenerator(sentenceCount);
         }
 
         /// <summary>
@@ -23,13 +54,13 @@ namespace StarTrekIpsum
         /// </summary>
         /// <param name="sentencesCount">an integer to specify the number of sentences</param>
         /// <returns>A string representing a paragrah with the number of sentences specified by sentencesCount</returns>
-        public string StarTrekIpsumParagraphGenerator(int sentencesCount)
+        public string ParagraphGenerator(int sentencesCount)
         {
             string[] availableSentences = Regex.Split(StarTrekIpsumText, @"(?<=[\.!\?])\s+");
 
-            var random = new Random("Janeway".GetHashCode());
+
             var availableSentencesCount = availableSentences.Length;
-            string returnValue = null;
+            string paragraph = null;
 
             int[] usedIndex = GetDuplicateSentenceArrayCheck(sentencesCount);
 
@@ -38,14 +69,24 @@ namespace StarTrekIpsum
                 int index;
                 do
                 {
-                    index = random.Next(availableSentencesCount);
+                    index = Random.Next(availableSentencesCount);
                 } while ((usedIndex.Contains(index)) || (availableSentencesCount < sentencesCount));
-                returnValue += $"{availableSentences[index]} ";
-                returnValue.TrimEnd();
+                paragraph += $"{availableSentences[index]} ";
+                paragraph.TrimEnd();
                 usedIndex[i] = index;
             }
 
-            return returnValue;
+            return paragraph;
+        }
+
+        public string[] MultiParagraphGenerator(int paragraphCount)
+        {
+            string[] paragraphs = new string[paragraphCount];
+            for (int i = 0; i < paragraphCount; i++)
+            {
+                paragraphs[i] = ParagraphGenerator();
+            }
+            return paragraphs;
         }
 
         private static int[] GetDuplicateSentenceArrayCheck(int sentencesCount)
