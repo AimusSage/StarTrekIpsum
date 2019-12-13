@@ -1,29 +1,27 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">Voyager.Ui</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>
-
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="ipsum">
-                <span class="oi oi-list-rich" aria-hidden="true"></span>StarTrek Ipsum
-            </NavLink>
-        </li>
-    </ul>
-</div>
+﻿<nav class="navbar navbar-expand-lg navbar-dark bg-primary pr-xl-3">
+    <div class="container">
+        <a class="navbar-brand" href="">Make it So!</a>
+        <button class="navbar-toggler collapsed" @onclick="ToggleNavMenu "type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="@NavMenuCssClass navbar-collapse" @onclick="ToggleNavMenu">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item px-3">
+                </li>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="ipsum">
+                        <span class="oi oi-list-rich" aria-hidden="true"></span>StarTrek Ipsum
+                    </NavLink>
+                </li>
+                <li class="nav-item px-3">
+                    <NavLink href="http://blazor.net" target="_blank" class="nav-link">About</NavLink>
+                </li>
+            </ul>
+            <div class="my-2 my-lg-0"></div>
+        </div>
+    </div>
+</nav>
 
 @code {
     private bool collapseNavMenu = true;
