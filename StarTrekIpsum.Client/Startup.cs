@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using StarTrekIpsum.Client;
 
-namespace StarTrekIpsum.Ui
+namespace StarTrekIpsum.Client
 {
     public class Startup
     {

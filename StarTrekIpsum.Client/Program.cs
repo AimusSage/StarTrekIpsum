@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Blazor.Hosting;
 
-namespace StarTrekIpsum.Ui
+namespace StarTrekIpsum.Client
 {
     public class Program
     {

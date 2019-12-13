@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace StarTrekIpsum
 {
@@ -10,7 +11,7 @@ namespace StarTrekIpsum
         private readonly string StarTrekIpsumText;
         private readonly Random Random = new Random();
 
-              /// <summary>
+        /// <summary>
         /// Picks a series to extract text from at random
         /// </summary>
         public StarTrekIpsumGenerator()
