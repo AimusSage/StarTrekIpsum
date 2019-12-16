@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using StarTrekIpsum.Data;
 
 namespace TestsCoreServer.Server
 {
@@ -18,6 +19,13 @@ namespace TestsCoreServer.Server
             {
                 opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
                     new[] { "application/octet-stream" });
+            });
+            services.AddLogging();
+
+            services.AddScoped<IBlobStorageClient, BlobStorageClient>();
+            services.Configure<BlobStorageSettings>(options =>
+            {
+                options.ContainerName = "StarTrekIpsum";
             });
         }
 
@@ -34,7 +42,7 @@ namespace TestsCoreServer.Server
 
             app.UseStaticFiles();
             app.UseClientSideBlazorFiles<StarTrekIpsum.Client.Startup>();
-         
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
