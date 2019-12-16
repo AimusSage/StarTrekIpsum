@@ -2,21 +2,23 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StarTrekIpsum.Data;
 using StarTrekIpsum.Ipsum;
+using System.Threading.Tasks;
 
 namespace StarTrekIpsum.Tests.IntegrationTest
 {
     [TestClass]
+    
     public class IntegrationTest
     {
         private IBlobStorageClient _blobStorageClient;
 
-        public IntegrationTest(TestFixture fixture)
+        public IntegrationTest()
         {
-            InitializeServices(fixture.ServiceProvider);
+            InitializeServices();
         }
 
         [TestMethod]
-        public async void RunIntegrationTest()
+        public async Task RunIntegrationTest()
         {
             // Arrange
             var starTrekIpsumGenerator = new StarTrekIpsumGenerator(_blobStorageClient);
@@ -29,9 +31,10 @@ namespace StarTrekIpsum.Tests.IntegrationTest
 
         }
 
-        private void InitializeServices(ServiceProvider serviceProvider)
+        private void InitializeServices()
         {
-            _blobStorageClient = serviceProvider.GetRequiredService<IBlobStorageClient>();
+            var fixture = new TestFixture();
+            _blobStorageClient = fixture.ServiceProvider.GetRequiredService<IBlobStorageClient>();
             //_starTrekIpsumGenerator = serviceProvider.GetRequiredService<IStarTrekIpsumGenerator>();
         }
     }
