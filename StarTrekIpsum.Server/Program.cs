@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
 using Microsoft.Extensions.Hosting;
 
-namespace TestsCoreServer.Server
+namespace StarTrekIpsum.Server
 {
     public class Program
     {
@@ -30,7 +30,7 @@ namespace TestsCoreServer.Server
                 webBuilder
                 .ConfigureAppConfiguration((context, config) =>
                 {
-                    
+
                     GetSecretsFromKeyVault(context, config);
                     config.AddCommandLine(args);
                 }).UseStartup<Startup>();

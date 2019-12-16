@@ -10,18 +10,21 @@ using Microsoft.Extensions.Hosting;
 using StarTrekIpsum.Data;
 using StarTrekIpsum.Ipsum;
 
-namespace TestsCoreServer.Server
+namespace StarTrekIpsum.Server
 {
     public class Startup
     {
-        private readonly string StorageAccountConnectionString = "StorageConnectionString";
+        private const string StorageAccountConnectionString = "StorageConnectionString";
 
         public Startup(IConfiguration config)
         {
             Configuration = config;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration
+        {
+            get;
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -65,14 +68,14 @@ namespace TestsCoreServer.Server
             }
 
             app.UseStaticFiles();
-            app.UseClientSideBlazorFiles<StarTrekIpsum.Client.Startup>();
+            app.UseClientSideBlazorFiles<Client.Startup>();
 
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
-                endpoints.MapFallbackToClientSideBlazor<StarTrekIpsum.Client.Startup>("index.html");
+                endpoints.MapFallbackToClientSideBlazor<Client.Startup>("index.html");
             });
         }
     }

@@ -30,12 +30,11 @@ namespace StarTrekIpsum.Tests
             var starTrekIpsumGenerator = new StarTrekIpsumGenerator(_blobStorageClient);
 
             // Act 
-
-            var result = starTrekIpsumGenerator.ParagraphGenerator(1,captain).Result;
+            var result = starTrekIpsumGenerator.ParagraphGenerator(1, captain).Result;
 
             //  Assert
             var resultArray = Regex.Split(result, @"(?<=[\.!\?])\s+").ToList();
-            resultArray.ForEach(x => text.Contains(x));
+            resultArray.ForEach(x => Assert.IsTrue(text.Contains(x)));
         }
 
 
@@ -49,7 +48,7 @@ namespace StarTrekIpsum.Tests
             _blobStorageClient.GetStarTrekText(Arg.Any<StarTrekCaptain>()).Returns(text);
 
             // Act
-            var result = starTrekIpsumGenerator.ParagraphGenerator(1,captain).Result;
+            var result = starTrekIpsumGenerator.ParagraphGenerator(1, captain).Result;
 
             // Assert
             Assert.IsNotNull(result);
