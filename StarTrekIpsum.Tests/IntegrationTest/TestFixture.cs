@@ -35,14 +35,20 @@ namespace StarTrekIpsum.Tests.IntegrationTest
 
             var azureServicesAuthConnectionString = ConfigurationRoot.GetValue<string>("AzureServicesAuthConnectionString");
 
-            var azureServiceTokenProvider = azureServicesAuthConnectionString == null ? new AzureServiceTokenProvider() : new AzureServiceTokenProvider(azureServicesAuthConnectionString);
-            using (var keyVaultClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback)))
-            {
-                var keyVaultUrl = ConfigurationRoot.GetValue<string>(KeyVaultUrl);
-                ConfigurationRoot = configurationBuilder
-                .AddAzureKeyVault(keyVaultUrl, keyVaultClient, new DefaultKeyVaultSecretManager())
+
+            var azureServiceTokenProvider = new AzureServiceTokenProvider();
+
+            var keyVaultClient = new KeyVaultClient(
+                new KeyVaultClient.AuthenticationCallback(
+                    azureServiceTokenProvider.KeyVaultTokenCallback));
+
+            ConfigurationRoot = configurationBuilder
+                .AddAzureKeyVault(
+                ConfigurationRoot[KeyVaultUrl],
+                keyVaultClient,
+                new DefaultKeyVaultSecretManager())
                 .Build();
-            }
+
 
             var serviceCollection = new ServiceCollection();
 
