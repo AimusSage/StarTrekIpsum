@@ -10,11 +10,14 @@ namespace StarTrekIpsum.Data
         private readonly CloudBlobClient _cloudBlobClient;
         private readonly ILogger<BlobStorageClient> _log;
         private readonly BlobStorageSettings _blobStorageSettings;
+        private readonly string _connectionString;
+        
 
         public BlobStorageClient(CloudBlobClient cloudBlobClient, IOptions<BlobStorageSettings> settings, ILogger<BlobStorageClient> log)
         {
             _cloudBlobClient = cloudBlobClient;
             _blobStorageSettings = settings.Value;
+            _connectionString = settings.Value.ConnectionString;
             _log = log;
         }
 
@@ -32,7 +35,7 @@ namespace StarTrekIpsum.Data
 
             await CreateContainerIfNotExistsAsync(containerName);
             var cloudBlobContainer = _cloudBlobClient.GetContainerReference(containerName);
-            var cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(captain.ToString());
+            var cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference($"StarTrek_{captain.ToString()}.txt");
 
             var content = await cloudBlockBlob.DownloadTextAsync();
             return content;
