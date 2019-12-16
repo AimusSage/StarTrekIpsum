@@ -1,0 +1,14 @@
+﻿<div class="card border-primary mb-3">
+    <div class="card-header">Take it away</div>
+    <div class="card-body">
+        @foreach (var paragraph in Text)
+        {
+            <p class="card-text">@paragraph</p>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string[] Text { get; set; }
+}

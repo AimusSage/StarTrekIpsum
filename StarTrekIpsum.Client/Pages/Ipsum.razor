@@ -1,44 +1,58 @@
 ﻿@page "/ipsum"
 @inject HttpClient Http
-
-<div>
-    <h1>Choose your captain</h1>
-    <select @bind="Captain">
-        @foreach (var captain in Enum.GetNames(typeof(StarTrekCaptain)))
+<div class="row">
+    <div class="col-12">
+        <h1>Choose your captain and length</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4">
+        <div class="form-group">
+            <label class="col-form-label" for="captainSelect">Captain</label>
+            <select class="form-control" @bind="Captain" id="captainSelect">
+                @foreach (var captain in Enum.GetNames(typeof(StarTrekCaptain)))
+                {
+                    <option value="@captain">@captain</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="col-form-label" for="paragraphInput">Number of Paragraphs</label>
+            <input class="form-control" type="number" min="0" @bind="ParagraphCount" id="paragraphInput" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-8">
+        @if (Text is null)
         {
-            <option value="@captain">@captain</option>
+            <h2>Make a choice first...</h2>
         }
-    </select>
-    <span>Number of Paragraphs</span>
-    <input type="number" @bind="ParagraphCount" />
-    @CountRender++;
-    @if (!(_ipsum is null))
-    {
-        <h2>Take it away</h2>
-        @foreach (var paragraph in Text)
+        else
         {
-            <div>@paragraph</div>
+            <IpsumText Text="@Text"></IpsumText>
         }
-    }
+    </div>
 </div>
 
 @code {
 
-
-    private int CountRender;
     private StarTrekCaptain _captain;
-    private string[] _ipsum;
-    public string[] Text { get { return _ipsum; } set { _ipsum = value; } }
+    private string[] Text;
+    private int _paragraphCount;
 
-    public int ParagraphCount { get; set; }
-
-    protected override async Task OnInitializedAsync()
+    public int ParagraphCount
     {
-        CountRender = 1;
-        var Text = await Http.GetJsonAsync<string[]>($"ipsumgenerator");
-        System.Diagnostics.Debug.WriteLine(Text[0]);
-
+        get { return _paragraphCount; }
+        set { _paragraphCount = value; GetIpsum(); }
     }
+
+    protected override void OnInitialized()
+    {
+        Captain = StarTrekCaptain.Picard;
+        ParagraphCount = 5;
+    }
+
     public StarTrekCaptain Captain
     {
         get
@@ -48,17 +62,13 @@
         set
         {
             _captain = value;
-
-            GetIpsum(_captain, ParagraphCount);
+            GetIpsum();
         }
     }
 
-    private async void GetIpsum(StarTrekCaptain captain, int paragraphCount)
+    private async Task GetIpsum()
     {
-        //var Text = await Http.GetJsonAsync<string[]>($"ipsumgenerator?Captain={captain}&Paragraphs={paragraphCount}");
-        var Text = await Http.GetJsonAsync<string[]>($"ipsumgenerator");
-        System.Diagnostics.Debug.WriteLine(Text[0]);
-        System.Diagnostics.Debug.WriteLine("I have rendered " + CountRender + " times");
-        
+        Text = await Http.GetJsonAsync<string[]>($"ipsumgenerator?Captain={Captain}&Paragraphs={ParagraphCount}");
+        StateHasChanged();
     }
 }
