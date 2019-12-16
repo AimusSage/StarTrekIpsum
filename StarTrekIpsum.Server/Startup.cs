@@ -14,7 +14,7 @@ namespace TestsCoreServer.Server
 {
     public class Startup
     {
-        private string StorageAccountConnectionString = "StorageConnectionString";
+        private readonly string StorageAccountConnectionString = "StorageConnectionString";
 
         public Startup(IConfiguration config)
         {

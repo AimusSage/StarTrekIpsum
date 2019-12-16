@@ -13,7 +13,7 @@ namespace StarTrekIpsum.Ipsum
 
         private readonly Random Random = new Random();
 
-        private IBlobStorageClient _blobStorageClient { get; }
+        private readonly IBlobStorageClient _blobStorageClient;
 
         /// <summary>
         /// extracts an from the captain's series
