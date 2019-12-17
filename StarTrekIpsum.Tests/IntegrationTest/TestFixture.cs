@@ -5,9 +5,8 @@ using Microsoft.Azure.Storage.Blob;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using StarTrekIpsum.Data;
-using StarTrekIpsum.Ipsum;
+using StarTrekIpsum.Server.Data;
+using StarTrekIpsum.Server.Ipsum;
 
 namespace StarTrekIpsum.Tests.IntegrationTest
 {

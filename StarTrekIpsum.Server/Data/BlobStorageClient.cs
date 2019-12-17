@@ -3,7 +3,7 @@ using Microsoft.Azure.Storage.Blob;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace StarTrekIpsum.Data
+namespace StarTrekIpsum.Server.Data
 {
     public class BlobStorageClient : IBlobStorageClient
     {
@@ -11,7 +11,7 @@ namespace StarTrekIpsum.Data
         private readonly ILogger<BlobStorageClient> _log;
         private readonly BlobStorageSettings _blobStorageSettings;
         private readonly string _connectionString;
-        
+
 
         public BlobStorageClient(CloudBlobClient cloudBlobClient, IOptions<BlobStorageSettings> settings, ILogger<BlobStorageClient> log)
         {

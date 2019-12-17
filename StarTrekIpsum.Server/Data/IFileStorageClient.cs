@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace StarTrekIpsum.Data
+namespace StarTrekIpsum.Server.Data
 {
     public interface IBlobStorageClient
     {

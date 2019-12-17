@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using StarTrekIpsum.Data;
-using StarTrekIpsum.Ipsum;
+using StarTrekIpsum.Server.Data;
+using StarTrekIpsum.Server.Ipsum;
 using System.Threading.Tasks;
 
 namespace StarTrekIpsum.Tests.IntegrationTest

@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,12 +24,6 @@
   <ItemGroup>
     <ProjectReference Include="..\StarTrekIpsum.Client\StarTrekIpsum.Client.csproj" />
     <ProjectReference Include="..\StarTrekIpsum\StarTrekIpsum.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Resources\StarTrek_Picard.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

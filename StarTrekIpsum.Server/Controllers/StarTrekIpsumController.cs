@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using StarTrekIpsum.Ipsum;
+using StarTrekIpsum.Server.Ipsum;
 
 namespace StarTrekIpsum.Server.Controllers
 {

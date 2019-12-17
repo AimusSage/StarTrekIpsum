@@ -1,11 +1,10 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using StarTrekIpsum.Data;
+using StarTrekIpsum.Server.Data;
 
-namespace StarTrekIpsum.Ipsum
+namespace StarTrekIpsum.Server.Ipsum
 {
     public class StarTrekIpsumGenerator : IStarTrekIpsumGenerator
     {
@@ -24,7 +23,7 @@ namespace StarTrekIpsum.Ipsum
             _blobStorageClient = blobStorageClient;
         }
 
-        
+
         /// <summary>
         /// Generate a paragraph with a random number of sentences up to a maximum of 10
         /// </summary>
