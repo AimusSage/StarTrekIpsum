@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using StarTrekIpsum.Data;
+using StarTrekIpsum.Server.Data;
 using StarTrekIpsum.Server.Ipsum;
 
 namespace StarTrekIpsum.Tests

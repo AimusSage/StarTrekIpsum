@@ -1,4 +1,5 @@
 using System.Linq;
+using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -37,6 +38,7 @@ namespace StarTrekIpsum.Server
                     new[] { "application/octet-stream" });
             });
             services.AddLogging();
+            services.AddApplicationInsightsTelemetry();
 
             services.AddSingleton(provider =>
             {
@@ -44,7 +46,6 @@ namespace StarTrekIpsum.Server
                 var cloudBlobClient = storageAccount.CreateCloudBlobClient();
                 return cloudBlobClient;
             });
-
 
             services.AddScoped<IBlobStorageClient, BlobStorageClient>();
             services.Configure<BlobStorageSettings>(options =>
@@ -57,7 +58,7 @@ namespace StarTrekIpsum.Server
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TelemetryConfiguration configuration)
         {
             app.UseResponseCompression();
 
