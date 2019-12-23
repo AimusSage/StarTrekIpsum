@@ -4,6 +4,9 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
   </PropertyGroup>
+  <PropertyGroup>
+    <DisableImplicitAspNetCoreAnalyzers>true</DisableImplicitAspNetCoreAnalyzers>
+  </PropertyGroup>
 
   <ItemGroup>
     <Content Remove="wwwroot\Resources\StarTrek_Picard.txt" />

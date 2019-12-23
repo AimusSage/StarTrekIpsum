@@ -68,7 +68,7 @@
 
     private async Task GetIpsum()
     {
-        Text = await Http.GetJsonAsync<string[]>($"ipsumgenerator?Captain={Captain}&Paragraphs={ParagraphCount}");
+        Text = await Http.GetJsonAsync<string[]>($"ipsums?Captain={Captain}&Paragraphs={ParagraphCount}");
         StateHasChanged();
     }
 }

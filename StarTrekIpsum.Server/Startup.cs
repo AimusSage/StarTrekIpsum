@@ -72,7 +72,7 @@ namespace StarTrekIpsum.Server
             app.UseClientSideBlazorFiles<Client.Startup>();
 
             app.UseRouting();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();

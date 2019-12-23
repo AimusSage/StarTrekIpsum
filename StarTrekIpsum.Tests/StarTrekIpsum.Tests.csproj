@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\StarTrekIpsum.Server\StarTrekIpsum.Server.csproj" />
     <ProjectReference Include="..\StarTrekIpsum\StarTrekIpsum.csproj" />
   </ItemGroup>
 

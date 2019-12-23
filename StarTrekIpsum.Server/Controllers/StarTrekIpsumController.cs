@@ -8,12 +8,12 @@ namespace StarTrekIpsum.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class IpsumGeneratorController : ControllerBase
+    public class IpsumsController : ControllerBase
     {
         private readonly IStarTrekIpsumGenerator _starTrekIpsumGenerator;
-        private readonly ILogger<IpsumGeneratorController> _logger;
+        private readonly ILogger<IpsumsController> _logger;
 
-        public IpsumGeneratorController(IStarTrekIpsumGenerator starTrekIpsumGenerator, ILogger<IpsumGeneratorController> logger)
+        public IpsumsController(IStarTrekIpsumGenerator starTrekIpsumGenerator, ILogger<IpsumsController> logger)
         {
             _starTrekIpsumGenerator = starTrekIpsumGenerator;
             _logger = logger;
