@@ -32,7 +32,7 @@ steps:
   inputs:
     command: 'test'
     projects: '**/StarTrekIpsum.Tests/*.csproj'
-      arguments: -c $(BuildConfiguration) --collect:"XPlat Code Coverage" -- RunConfiguration.DisableAppDomain=true
+    arguments: -c $(BuildConfiguration) --collect:"XPlat Code Coverage" -- RunConfiguration.DisableAppDomain=true
     testRunTitle: 'Run Test and collect Coverage' 
   displayName: 'Running tests'
 
