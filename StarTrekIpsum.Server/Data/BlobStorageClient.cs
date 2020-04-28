@@ -23,7 +23,7 @@ namespace StarTrekIpsum.Server.Data
 
         public async Task<string> GetStarTrekText(StarTrekCaptain captain)
         {
-            _log.LogDebug($"Get text for Captain {captain.ToString()}");
+            _log.LogDebug($"Get text for Captain {captain}");
             var containerName = _blobStorageSettings.ContainerName;
 
             return await GetBlob(captain, containerName);
@@ -35,7 +35,7 @@ namespace StarTrekIpsum.Server.Data
 
             await CreateContainerIfNotExistsAsync(containerName);
             var cloudBlobContainer = _cloudBlobClient.GetContainerReference(containerName);
-            var cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference($"StarTrek_{captain.ToString()}.txt");
+            var cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference($"StarTrek_{captain}.txt");
 
             var content = await cloudBlockBlob.DownloadTextAsync();
             return content;

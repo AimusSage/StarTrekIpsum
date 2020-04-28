@@ -24,7 +24,7 @@ namespace StarTrekIpsum.Tests
         {
             // Arrange
             var captain = StarTrekCaptain.Kirk;
-            var text = File.ReadAllText(Path.Combine(Environment.CurrentDirectory, $@"Resources\StarTrek_{captain.ToString()}.txt"));
+            var text = File.ReadAllText(Path.Combine(Environment.CurrentDirectory, $@"Resources\StarTrek_{captain}.txt"));
             _blobStorageClient.GetStarTrekText(Arg.Any<StarTrekCaptain>()).Returns(text);
 
             var starTrekIpsumGenerator = new StarTrekIpsumGenerator(_blobStorageClient);
@@ -44,7 +44,7 @@ namespace StarTrekIpsum.Tests
             // Arrange
             var starTrekIpsumGenerator = new StarTrekIpsumGenerator(_blobStorageClient);
             var captain = StarTrekCaptain.Picard;
-            var text = File.ReadAllText(Path.Combine(Environment.CurrentDirectory, $@"Resources\StarTrek_{captain.ToString()}.txt"));
+            var text = File.ReadAllText(Path.Combine(Environment.CurrentDirectory, $@"Resources\StarTrek_{captain}.txt"));
             _blobStorageClient.GetStarTrekText(Arg.Any<StarTrekCaptain>()).Returns(text);
 
             // Act
@@ -59,7 +59,7 @@ namespace StarTrekIpsum.Tests
         {
             // Arrange
             var starTrekIpsumGenerator = new StarTrekIpsumGenerator(_blobStorageClient);
-            var text = File.ReadAllText(Path.Combine(Environment.CurrentDirectory, $@"Resources\StarTrek_{StarTrekCaptain.Picard.ToString()}.txt"));
+            var text = File.ReadAllText(Path.Combine(Environment.CurrentDirectory, $@"Resources\StarTrek_{StarTrekCaptain.Picard}.txt"));
             _blobStorageClient.GetStarTrekText(Arg.Any<StarTrekCaptain>()).Returns(text);
 
             // Act
@@ -75,7 +75,7 @@ namespace StarTrekIpsum.Tests
             // Arrange
             var starTrekIpsumGenerator = new StarTrekIpsumGenerator(_blobStorageClient);
             var captain = StarTrekCaptain.Picard;
-            var text = File.ReadAllText(Path.Combine(Environment.CurrentDirectory, $@"Resources\StarTrek_{captain.ToString()}.txt"));
+            var text = File.ReadAllText(Path.Combine(Environment.CurrentDirectory, $@"Resources\StarTrek_{captain}.txt"));
             _blobStorageClient.GetStarTrekText(Arg.Any<StarTrekCaptain>()).Returns(text);
 
             // Act
